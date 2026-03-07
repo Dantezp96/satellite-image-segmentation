@@ -27,3 +27,5 @@ dist
 *.pth
 training/*.onnx
 .vercel
+
+.vercel
