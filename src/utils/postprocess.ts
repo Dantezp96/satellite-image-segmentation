@@ -77,8 +77,10 @@ const ADE20K_TO_LAND: Record<number, number> = {
 
   // Forest (3): trees, dense vegetation
   4: 3,   // tree
-  16: 3,  // mountain (often forested)
   67: 3,  // palm
+
+  // Mountain from satellite is typically barren terrain
+  16: 5,  // mountain → Barren (satellite perspective)
 
   // Water (4): sea, river, lake, pool
   21: 4,  // sea
