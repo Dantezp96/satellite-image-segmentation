@@ -77,6 +77,8 @@ const translations = {
 
 type Key = keyof typeof translations;
 
-export function t(key: Key, lang: Lang): string | readonly string[] {
-  return translations[key][lang];
+export function t(key: Key | string, lang: Lang): string | readonly string[] {
+  const entry = translations[key as Key];
+  if (!entry) return key; // fallback to key if translation missing
+  return entry[lang];
 }
