@@ -29,3 +29,6 @@ training/*.onnx
 .vercel
 
 .vercel
+
+# HuggingFace cache
+training/hf_cache/
