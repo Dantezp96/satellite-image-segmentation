@@ -6,13 +6,13 @@ export interface PreprocessResult {
   originalHeight: number;
 }
 
-// ImageNet normalization (required by SegFormer)
-const MEAN = [0.485, 0.456, 0.406];
-const STD = [0.229, 0.224, 0.225];
+// FLAIR normalization (0-255 pixel range, not 0-1)
+const MEAN = [105.08, 110.87, 101.82];
+const STD = [52.17, 45.38, 44.00];
 
 /**
  * Resize image to MODEL_INPUT_SIZE x MODEL_INPUT_SIZE, normalize with
- * ImageNet mean/std, and convert from HWC RGBA to NCHW RGB Float32.
+ * FLAIR mean/std (0-255 range), and convert from HWC RGBA to NCHW RGB Float32.
  */
 export function preprocess(
   source: HTMLImageElement | HTMLCanvasElement,
@@ -34,9 +34,9 @@ export function preprocess(
 
   for (let i = 0; i < size; i++) {
     const srcIdx = i * 4;
-    tensor[i] = (data[srcIdx] / 255 - MEAN[0]) / STD[0];               // R
-    tensor[size + i] = (data[srcIdx + 1] / 255 - MEAN[1]) / STD[1];     // G
-    tensor[2 * size + i] = (data[srcIdx + 2] / 255 - MEAN[2]) / STD[2]; // B
+    tensor[i] = (data[srcIdx] - MEAN[0]) / STD[0];               // R
+    tensor[size + i] = (data[srcIdx + 1] - MEAN[1]) / STD[1];     // G
+    tensor[2 * size + i] = (data[srcIdx + 2] - MEAN[2]) / STD[2]; // B
   }
 
   return { tensor, originalWidth: origW, originalHeight: origH };

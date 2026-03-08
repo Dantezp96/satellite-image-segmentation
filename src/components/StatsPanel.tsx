@@ -16,7 +16,7 @@ export function StatsPanel({ stats, lang }: Props) {
       value: stats.classPercentages[i] ?? 0,
       color: cls.color,
     }))
-    .filter((d) => d.value > 0.5);
+    .filter((d) => d.value > 0.5 && !d.name.startsWith("Unused"));
 
   const dominantName = stats.dominantClass >= 0
     ? t(`class.${LAND_CLASSES[stats.dominantClass].name}` as Parameters<typeof t>[0], lang) as string

@@ -16,7 +16,7 @@ export function useSegmentor() {
     async function loadModel() {
       setStatus("loading");
       try {
-        const response = await fetch("/models/unet_mobilenet_satellite.onnx");
+        const response = await fetch("/models/flair_landcover.onnx");
         const reader = response.body!.getReader();
         const contentLength = +(response.headers.get("Content-Length") ?? 0);
         const chunks: Uint8Array[] = [];
