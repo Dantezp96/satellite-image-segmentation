@@ -99,13 +99,17 @@ const ADE20K_TO_LAND: Record<number, number> = {
 
   // Sky / Unknown (6)
   2: 6,   // sky
-  0: 6,   // wall (interior)
-  5: 6,   // ceiling
   7: 6,   // bed
   8: 6,   // sofa
   10: 6,  // table
   15: 6,  // seat
   18: 6,  // curtain
+
+  // Remap for satellite perspective (from above, these look like urban/ground)
+  0: 0,   // wall → Urban (buildings from above)
+  5: 0,   // ceiling → Urban (flat rooftops from above)
+  22: 0,  // painting → Urban (flat surface patterns)
+  27: 5,  // rug → Barren (ground texture)
 };
 
 /** Map any ADE20K class to our 7 land cover classes */

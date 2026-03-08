@@ -54,6 +54,7 @@ export const MapView = forwardRef<MapViewHandle, Props>(
         },
         center: [-74.006, 40.7128], // NYC
         zoom: 13,
+        canvasContextAttributes: { preserveDrawingBuffer: true },
         attributionControl: false,
       });
 
